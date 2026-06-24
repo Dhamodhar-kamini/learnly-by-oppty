@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview - Oppty TechHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="overview.css">
+</head>
+<body>
+
+    <div id="oppty-global-loader" class="global-loader-overlay">
+        <div class="loader-content">
+            <img src="../assets/opptylogo2.png" alt="Loading Icon" class="loader-icon" onerror="this.style.display='none'">
+            <img src="../assets/opptylogo.png" alt="Oppty TechHub" class="loader-full-logo" onerror="this.outerHTML='<h2 style=\'color:#0f172a; font-family:Plus Jakarta Sans;\'>Loading...</h2>'">
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="add-task-modal">
+        <div class="modal-content fade-in-up">
+            <div class="modal-header">
+                <h3>Add New Task</h3>
+                <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Task Description</label>
+                    <input type="text" id="new-task-text" placeholder="e.g., Complete Python module" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Task Type</label>
+                    <select id="new-task-type" class="form-control">
+                        <option value="course">Coursework</option>
+                        <option value="quiz">Quiz/Assignment</option>
+                        <option value="review">Review</option>
+                    </select>
+                </div>
+                <button class="btn-primary w-100 mt-3" id="save-task-btn">Save Task</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="schedule-modal">
+        <div class="modal-content fade-in-up" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>Your Daily Schedule</h3>
+                <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="schedule-timeline">
+                    <div class="sched-item">
+                        <div class="time">10:00 AM</div>
+                        <div class="sched-details primary-bg">
+                            <h4>Backend Module 4</h4>
+                            <p>Self-paced learning</p>
+                        </div>
+                    </div>
+                    <div class="sched-item">
+                        <div class="time">2:00 PM</div>
+                        <div class="sched-details warning-bg">
+                            <h4>Quiz: Database Queries</h4>
+                            <p>Due today</p>
+                        </div>
+                    </div>
+                    <div class="sched-item">
+                        <div class="time">6:00 PM</div>
+                        <div class="sched-details success-bg">
+                            <h4>Live Session: System Design</h4>
+                            <p>with Alex Chen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="calendar-modal">
+        <div class="modal-content fade-in-up" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>Upcoming Live Sessions</h3>
+                <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="calendar-list">
+                    <div class="cal-item">
+                        <div class="cal-date"><span>28</span> May</div>
+                        <div class="cal-info">
+                            <h4>System Design Q&A</h4>
+                            <p>6:00 PM - with Alex Chen</p>
+                        </div>
+                        <button class="btn-outline">RSVP</button>
+                    </div>
+                    <div class="cal-item">
+                        <div class="cal-date"><span>02</span> Jun</div>
+                        <div class="cal-info">
+                            <h4>Advanced React Patterns</h4>
+                            <p>4:00 PM - with Sarah Jenkins</p>
+                        </div>
+                        <button class="btn-outline">RSVP</button>
+                    </div>
+                    <div class="cal-item">
+                        <div class="cal-date"><span>05</span> Jun</div>
+                        <div class="cal-info">
+                            <h4>Portfolio Review Workshop</h4>
+                            <p>11:00 AM - with Elena Rodriguez</p>
+                        </div>
+                        <button class="btn-outline">RSVP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="article-modal">
+        <div class="modal-content fade-in-up" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3>Oppty Dispatch</h3>
+                <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hackathon" style="width:100%; border-radius:12px; margin-bottom: 20px;">
+                <h2 style="color:var(--dark-blue); margin-bottom: 12px;">Weekend Hackathon: Build a Full-Stack App in 48 Hours</h2>
+                <p style="color:var(--text-muted); line-height: 1.6; margin-bottom: 16px;">The Oppty TechHub team is thrilled to announce our Summer Hackathon! This is your chance to put your React and Django skills to the test in a high-pressure, highly rewarding environment.</p>
+                <h4 style="margin-bottom: 8px;">Prize Pool:</h4>
+                <ul style="margin-bottom: 20px; color:var(--text-muted); list-style: disc; padding-left: 20px;">
+                    <li>1st Place: ₹50,000 INR & Direct Referral</li>
+                    <li>2nd Place: ₹25,000 INR</li>
+                    <li>3rd Place: Premium Swag Kit</li>
+                </ul>
+                <button class="btn-primary w-100" id="register-hackathon">Register Now</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="app-container">
+        
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top-section">
+                <div class="sidebar-header">
+                    <img src="../assets/opptylogo.png" alt="Oppty Logo" class="sidebar-logo" onerror="this.outerHTML='<h2 style=\'color:#0f172a; font-weight:800; margin:0;\'>OPPTY</h2>'">
+                    <i class="fa-solid fa-xmark close-sidebar" id="close-sidebar"></i>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="overview.html" class="nav-item active">
+                        <i class="fa-solid fa-table-cells-large"></i>
+                        <span>Overview</span>
+                    </a>
+                    
+                    <div class="nav-wrapper">
+                        <div class="nav-item" id="course-toggle">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>Course</span>
+                            <i class="fa-solid fa-chevron-down chevron"></i>
+                        </div>
+                        <ul class="sub-menu" id="sub-menu">
+                            <li><a href="../courses/courses.html">Top course</a></li>
+                            <li><a href="../courses/backend-architecture.html">Backend Architecture</a></li>
+                            <li><a href="../courses/cinematic-ui-ux.html">Cinematic UI/UX</a></li>
+                        </ul>
+                    </div>
+
+                    <a href="../my-course/my-course.html" class="nav-item">
+                        <i class="fa-solid fa-desktop"></i>
+                        <span>My course</span>
+                    </a>
+
+                    <a href="../learning-progress/learning-progress.html" class="nav-item">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Learning progress</span>
+                    </a>
+                    
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-user-group"></i>
+                        <span>Community</span>
+                    </a>
+                </nav>
+            </div>
+
+            
+
+            
+
+
+        </aside>
+
+        <main class="content-area">
+            
+            <header class="topbar">
+                <div class="header-left">
+                    <div class="mobile-toggle" id="mobile-toggle">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </div>
+                    <div class="page-title desktop-only">
+                        <h1>Overview</h1>
+                        <p>Welcome back to your workspace.</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar desktop-only">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search lessons, tasks...">
+                    </div>
+                    <!-- <button class="notif-btn">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notif-badge"></span>
+                    </button> -->
+                    <div class="profile-info" id="profile-dropdown-trigger">
+    <span class="user-name">DHAMODHAR</span>
+    <img src="https://i.pravatar.cc/150?img=11" alt="User Profile" class="avatar" />
+
+    <div class="profile-dropdown-menu" id="profile-dropdown-menu">
+        <div class="dropdown-header">
+            <p class="dropdown-name">DHAMODHAR</p>
+            <p class="dropdown-email">student@oppty.com</p>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="#" class="dropdown-item">
+            <i class="fa-solid fa-user"></i> My Profile
+        </a>
+        <a href="#" class="dropdown-item">
+            <i class="fa-solid fa-gear"></i> Account Settings
+        </a>
+        
+        <div class="dropdown-divider"></div>
+        
+        <a href="../index.html" class="dropdown-item logout-item" id="dropdown-logout-btn">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+        </a>
+    </div>
+</div>
+
+
+                </div>
+            </header>
+
+            <section class="dashboard-layout fade-in-up">
+                
+                <div class="dash-row top-row">
+                    
+                    <div class="welcome-banner">
+                        <div class="welcome-content">
+                            <span class="date-badge" id="current-date">Today</span>
+                            <h2>Ready to conquer Django, DHAMODHAR?</h2>
+                            <p>You have 2 upcoming tasks and 1 live session scheduled for this week. Let's make it count.</p>
+                            <button id="btn-view-schedule" class="btn-primary mt-3">View Daily Schedule</button>
+                        </div>
+                        <div class="welcome-visual">
+                            <i class="fa-solid fa-rocket float-anim"></i>
+                        </div>
+                    </div>
+
+                    <div class="resume-card">
+                        <div class="resume-header">
+                            <h3>Pick up where you left off</h3>
+                            <span class="tag">Backend</span>
+                        </div>
+                        <div class="resume-body" id="btn-resume-course">
+                            <div class="video-thumb">
+                                <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Django Video">
+                                <div class="play-circle"><i class="fa-solid fa-play"></i></div>
+                            </div>
+                            <div class="resume-info">
+                                <h4>Advanced Django Architecture</h4>
+                                <p>Module 4: JWT Authentication Implementation</p>
+                                <div class="time-left"><i class="fa-regular fa-clock"></i> 15 mins left</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-row three-col">
+                    
+                    <div class="dash-widget">
+                        <div class="widget-header">
+                            <h3>Today's Tasks</h3>
+                            <button class="btn-icon" id="btn-add-task"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="task-list" id="task-list-container">
+                            <label class="task-item">
+                                <input type="checkbox" class="task-cb">
+                                <span class="task-text">Watch JWT Auth video</span>
+                                <span class="task-tag blue">Course</span>
+                            </label>
+                            <label class="task-item">
+                                <input type="checkbox" class="task-cb">
+                                <span class="task-text">Complete API routing quiz</span>
+                                <span class="task-tag orange">Quiz</span>
+                            </label>
+                            <label class="task-item">
+                                <input type="checkbox" class="task-cb" checked>
+                                <span class="task-text">Review React component state</span>
+                                <span class="task-tag green">Review</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="dash-widget">
+                        <div class="widget-header">
+                            <h3>Live Sessions</h3>
+                            <a href="#" class="link-text" id="btn-view-calendar">Calendar</a>
+                        </div>
+                        <div class="session-card">
+                            <div class="session-date">
+                                <span class="month">MAY</span>
+                                <span class="day">28</span>
+                            </div>
+                            <div class="session-info">
+                                <h4>System Design Q&A</h4>
+                                <p><i class="fa-regular fa-clock"></i> 6:00 PM - 7:30 PM</p>
+                                <div class="mentor">
+                                    <img src="https://i.pravatar.cc/150?img=33" alt="Mentor">
+                                    <span>with Alex Chen</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-outline w-100 mt-3" id="btn-join-workspace">Join Workspace</button>
+                    </div>
+
+                    <div class="dash-widget highlight-widget">
+                        <div class="widget-header">
+                            <h3>Oppty Updates</h3>
+                            <i class="fa-solid fa-bullhorn text-primary"></i>
+                        </div>
+                        <div class="announcement">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Hackathon" class="announce-img">
+                            <h4>Weekend Hackathon Announced!</h4>
+                            <p>Build a full-stack app in 48 hours. Prize pool details inside.</p>
+                            <button class="btn-text-link mt-2" id="btn-read-more">Read more <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="dash-row bottom-row">
+                    <div class="dash-widget">
+                        <div class="widget-header">
+                            <h3>Recent Achievements</h3>
+                            <a href="../learning-progress/learning-progress.html" class="link-text">View All</a>
+                        </div>
+                        <div class="achievements-grid">
+                            <div class="badge-card">
+                                <div class="badge-icon" style="background:#eff6ff; color:#2563eb;"><i class="fa-solid fa-fire"></i></div>
+                                <h4>7 Day Streak</h4>
+                                <p>Unstoppable!</p>
+                            </div>
+                            <div class="badge-card">
+                                <div class="badge-icon" style="background:#fef3c7; color:#f59e0b;"><i class="fa-solid fa-code"></i></div>
+                                <h4>First API</h4>
+                                <p>Django Deployed</p>
+                            </div>
+                            <div class="badge-card locked">
+                                <div class="badge-icon"><i class="fa-solid fa-lock"></i></div>
+                                <h4>Full Stack</h4>
+                                <p>Complete path</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dash-widget">
+                        <div class="widget-header">
+                            <h3>Weekly Activity</h3>
+                        </div>
+                        <div class="chart-placeholder">
+                            <div class="chart-bar" style="height: 40%;"><span class="day-lbl">M</span></div>
+                            <div class="chart-bar" style="height: 70%;"><span class="day-lbl">T</span></div>
+                            <div class="chart-bar" style="height: 100%; background: var(--primary-blue);"><span class="day-lbl">W</span></div>
+                            <div class="chart-bar" style="height: 30%;"><span class="day-lbl">T</span></div>
+                            <div class="chart-bar" style="height: 60%;"><span class="day-lbl">F</span></div>
+                            <div class="chart-bar" style="height: 20%;"><span class="day-lbl">S</span></div>
+                            <div class="chart-bar" style="height: 10%;"><span class="day-lbl">S</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <script src="overview.js"></script>
+</body>
+</html>

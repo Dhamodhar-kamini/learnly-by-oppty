@@ -1,97 +1,194 @@
-/* Base styles for the page body */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: white; /* Ensures the page itself is white */
+/* --- Base Overlay --- */
+#lms-loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
-/* NEW: The full-screen wrapper with a white background */
-#loader-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: white; /* Forces the loader background to be white */
-  z-index: 9999; /* Ensures it sits on top of all other elements */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.5s ease; /* Smooth fade out effect */
+#lms-loader-wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
-/* Original Loader CSS */
-.loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: scale(0.2);
-
-  --from: 200px;
-  --to: 40px;
-  --size: 32px;
-  --time: 6s;
-  --count: 100;
-  --turns: 6;
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
 }
 
-.circle {
-  position: absolute;
-
-  --delay: calc(var(--time) / var(--count) * -1 * var(--i));
-  rotate: calc(var(--turns) * 1turn / var(--count) * var(--i));
-
-  animation: circle var(--time) var(--delay) ease-in-out infinite;
-}
-.circle::before {
-  content: "";
-  display: block;
-  width: var(--size);
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background-color: white;
-  transform-origin: center center;
-
-  animation: circleSize var(--time) var(--delay) ease-in-out infinite;
+/* --- Logo Styling --- */
+.lms-logo {
+    width: 280px;
+    height: auto;
+    margin-bottom: 45px;
+    animation: floating 4s ease-in-out infinite;
 }
 
-/* rainbow color using HSL */
-.rainbow .circle::before {
-  background-color: hsl(
-    calc(1turn / (var(--count) / var(--turns)) * var(--i)) 100% 70%
-  );
+/* --- Module Timeline --- */
+.module-timeline {
+    width: 90%;
+    position: relative;
+    padding-top: 10px;
 }
 
-/* animations */
-@keyframes circle {
-  from {
-    transform: translate(0, var(--from));
-  }
-  to {
-    transform: translate(0, var(--to));
-  }
-}
-@keyframes circleSize {
-  0%,
-  100% {
-    transform: scale(0);
-  }
-  25%,
-  50% {
-    transform: scale(1);
-  }
+/* Background line connecting the dots */
+.timeline-line-bg {
+    position: absolute;
+    top: 21px; /* Aligned with the center of the wrappers */
+    left: 5%;
+    width: 90%;
+    height: 4px;
+    background-color: #E0E5EC;
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-.loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: scale(0.2);
+/* Moving gradient track */
+.timeline-line-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #1E2638, #F15A24);
+    animation: fillLine 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
 
-  --from: 200px;
-  --to: 40px;
-  --size: 32px;
-  --time: 3s; /* CHANGED from 6s to 3s */
-  --count: 100;
-  --turns: 6;
+/* Container for the milestones */
+.timeline-nodes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+/* Individual Milestones */
+.node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.node-wrapper {
+    position: relative;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.node-circle {
+    width: 14px;
+    height: 14px;
+    background-color: #E0E5EC;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.node-ripple {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    z-index: 1;
+}
+
+.node-text {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #8892A3;
+}
+
+/* --- Synchronized Node Animations --- */
+.step-1 .node-circle { animation: popNode1 3.2s infinite; }
+.step-1 .node-ripple { animation: ripple1 3.2s infinite; }
+.step-1 .node-text { animation: textPop1 3.2s infinite; }
+
+.step-2 .node-circle { animation: popNode2 3.2s infinite; }
+.step-2 .node-ripple { animation: ripple2 3.2s infinite; }
+.step-2 .node-text { animation: textPop2 3.2s infinite; }
+
+.step-3 .node-circle { animation: popNode3 3.2s infinite; }
+.step-3 .node-ripple { animation: ripple3 3.2s infinite; }
+.step-3 .node-text { animation: textPop3 3.2s infinite; }
+
+
+/* --- Keyframes --- */
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes fillLine {
+    0%, 5% { width: 0%; opacity: 1; }
+    30% { width: 50%; opacity: 1; }
+    55%, 85% { width: 100%; opacity: 1; }
+    90%, 100% { width: 100%; opacity: 0; }
+}
+
+/* Node 1: Learn */
+@keyframes popNode1 {
+    0%, 5% { transform: scale(1); background-color: #E0E5EC; }
+    10%, 85% { transform: scale(1.4); background-color: #1E2638; }
+    90%, 100% { transform: scale(1); background-color: #E0E5EC; }
+}
+@keyframes ripple1 {
+    0%, 5% { transform: scale(0.8); opacity: 0; border-color: #1E2638; }
+    10% { opacity: 1; }
+    25%, 100% { transform: scale(2.2); opacity: 0; border-color: #1E2638; }
+}
+@keyframes textPop1 {
+    0%, 5% { color: #8892A3; transform: translateY(0); }
+    10%, 85% { color: #1E2638; transform: translateY(-3px); }
+    90%, 100% { color: #8892A3; transform: translateY(0); }
+}
+
+/* Node 2: Upgrade */
+@keyframes popNode2 {
+    0%, 30% { transform: scale(1); background-color: #E0E5EC; }
+    35%, 85% { transform: scale(1.4); background-color: #1E2638; }
+    90%, 100% { transform: scale(1); background-color: #E0E5EC; }
+}
+@keyframes ripple2 {
+    0%, 30% { transform: scale(0.8); opacity: 0; border-color: #1E2638; }
+    35% { opacity: 1; }
+    50%, 100% { transform: scale(2.2); opacity: 0; border-color: #1E2638; }
+}
+@keyframes textPop2 {
+    0%, 30% { color: #8892A3; transform: translateY(0); }
+    35%, 85% { color: #1E2638; transform: translateY(-3px); }
+    90%, 100% { color: #8892A3; transform: translateY(0); }
+}
+
+/* Node 3: Grow (Orange Highlights) */
+@keyframes popNode3 {
+    0%, 55% { transform: scale(1); background-color: #E0E5EC; box-shadow: none; }
+    60%, 85% { transform: scale(1.6); background-color: #F15A24; box-shadow: 0 0 10px rgba(241, 90, 36, 0.4); }
+    90%, 100% { transform: scale(1); background-color: #E0E5EC; box-shadow: none; }
+}
+@keyframes ripple3 {
+    0%, 55% { transform: scale(0.8); opacity: 0; border-color: #F15A24; }
+    60% { opacity: 1; }
+    75%, 100% { transform: scale(2.5); opacity: 0; border-color: #F15A24; }
+}
+@keyframes textPop3 {
+    0%, 55% { color: #8892A3; transform: translateY(0); }
+    60%, 85% { color: #F15A24; transform: translateY(-4px); }
+    90%, 100% { color: #8892A3; transform: translateY(0); }
 }
